@@ -225,7 +225,7 @@ Batch auctions serve portfolios well, but premium single domains need focused at
 
 ---
 
-## Hackathon Benefits for Doma  
+## Benefits for Doma  
 
 - 🚀 **Liquidity boost**: Batch + fractionalization increase volumes.  
 - 🎮 **Engagement loop**: Rewards + gamification bring sticky bidders.  
