@@ -12,15 +12,25 @@ A comprehensive auction ecosystem for domain NFTs featuring four specialized sys
 
 ## 🎯 System 1: Hybrid Batch Auctions (HybridDutchAuction)
 
-### Overview
-Hybrid Batch Auctions enable sellers to liquidate domain portfolios efficiently while allowing buyers to participate fractionally. This system combines Dutch auction mechanics with gamification and fractional ownership.
+### Problem
+Traditional auctions handle domains individually, making it hard for large holders to liquidate portfolios efficiently and excluding small buyers from participating in premium bundles.
+
+### Solution
+Hybrid Batch Auctions combine multiple domains into single Dutch auction curves with fractional ownership support, gamified bidding mechanics, and dynamic pricing incentives.
 
 ### Key Features
 - **Batch Portfolio Trading**: Auction multiple domains as a single bundle with shared pricing curve
-- **Fractional Ownership**: Buyers can bid for specific percentages of the portfolio
-- **Gamified Bidding**: Soft bids with auto-conversion and loyalty rewards
-- **Reverse Royalty Engine**: Dynamic royalties that increase over time
-- **Anti-Spam Bonds**: Refundable deposits prevent malicious bidding
+- **Fractional Ownership**: Buyers can bid for specific percentages of the portfolio (e.g., 10% stake)
+- **Gamified Bidding**: Soft bids with auto-conversion thresholds and loyalty rewards
+- **Reverse Royalty Engine**: Dynamic royalties starting at 0% and increasing over time
+- **Anti-Spam Bonds**: Refundable deposits (0.2%) prevent malicious bidding
+
+### Benefits
+- **Liquidity for Sellers**: Large holders can liquidate entire portfolios efficiently
+- **Accessibility for Buyers**: Small investors can participate in premium bundles fractionally
+- **Higher Participation**: Gamification encourages early engagement and prevents last-minute sniping
+- **Dynamic Incentives**: Reverse royalties create urgency without fixed high fees
+- **Community Building**: Loyalty rewards create sticky, engaged user base
 
 ### Batch Dutch Auctions
 - Auction multiple domain NFTs as a portfolio
@@ -43,14 +53,17 @@ Hybrid Batch Auctions enable sellers to liquidate domain portfolios efficiently 
 
 ## 🏆 System 2: Premium Domain Auctions with Betting (DomainAuctionBetting)
 
-### Overview
-Premium Domain Auctions provide focused attention for high-value single domains with an integrated betting system that creates additional engagement and yield opportunities.
+### Problem
+Batch auctions serve portfolios well, but premium single domains need focused attention and additional engagement mechanisms. Traditional auctions lack sophisticated betting systems that could create yield opportunities and price discovery.
+
+### Solution
+Independent single-domain Dutch auctions with integrated 4-tier price betting system, using commit-reveal protocol to ensure fair wagering and prevent market manipulation.
 
 ### Key Features
 - **Independent Single-Domain Auctions**: Dedicated Dutch auctions for premium domains
-- **First-Bid-Wins Mechanism**: Immediate auction completion on first bid
-- **4-Tier Price Betting**: Parallel wagering system on auction outcomes
-- **Commit-Reveal Protocol**: Hidden bets prevent market manipulation
+- **First-Bid-Wins Mechanism**: Immediate auction completion on first bid for efficiency
+- **4-Tier Price Betting**: Parallel wagering on auction outcomes (Above High, High~Low, Below Low, Uncleared)
+- **Commit-Reveal Protocol**: Hidden bets prevent market manipulation and sniping
 - **Configurable Price Thresholds**: Seller-defined high/low boundaries for betting categories
 
 ### Betting Categories
@@ -65,18 +78,20 @@ Premium Domain Auctions provide focused attention for high-value single domains 
 - **3%**: Winning buyer (price discovery bonus)
 - **2%**: Protocol treasury
 
+### Benefits
+- **Independence**: Separate system for different use cases from batch auctions
+- **Fairness**: Hidden commitments prevent market manipulation and sniping
+- **Incentives**: All participants (sellers, buyers, bettors) receive rewards
+- **Engagement**: Creates yield opportunities around premium domain auctions
+- **Efficiency**: First-bid-wins mechanism reduces auction duration
+
 ## 🏦 System 3: Auction-Backed Lending (ABL) for Domain Auctions
 
-### Overview
-Auction-Backed Lending introduces a credit layer to domain auctions, allowing sellers to access immediate liquidity while using their domain NFTs as collateral.
-
-### Problem Statement
-- Sellers often need liquidity upfront before auctions complete
-- Buyers hesitate when uncertain about seller reliability
-- Existing NFT auctions lack integrated credit markets
+### Problem
+Sellers often need liquidity upfront before auctions complete. Buyers sometimes hesitate to bid when they don't know if sellers will follow through. Existing NFT auctions don't integrate credit or loan markets.
 
 ### Solution: Auction-Backed Lending
-Our protocol enables sellers to borrow stablecoins upfront, collateralized by domain NFTs locked in auction contracts. Lenders fund up to 30-50% of estimated floor prices.
+Our protocol allows sellers to borrow stablecoins upfront, collateralized by their domain NFTs locked in auction contracts. Lenders fund up to 30-50% of estimated floor prices with automatic settlement from auction proceeds.
 
 ### Workflow
 1. **List & Collateralize**: Seller lists domain for Dutch auction, NFT locked in smart contract, optionally requests advance loan
@@ -85,6 +100,12 @@ Our protocol enables sellers to borrow stablecoins upfront, collateralized by do
 4. **Settlement**:
    - **Success**: Loan + interest auto-repaid from proceeds, remainder to seller
    - **Failure**: Loan defaults, NFT ownership transfers to lenders
+
+### Benefits
+- **Sellers**: Get immediate liquidity instead of waiting for auction results, confidence to list high-value domains without cashflow pressure
+- **Lenders**: Gain yield if auction succeeds, gain NFT at discounted price if auction fails
+- **Buyers**: More secure - auction integrity guaranteed by collateralized domain
+- **Protocol**: Introduces new credit layer around domain auctions, higher liquidity → higher auction participation
 
 ### Benefits
 - **Sellers**: Immediate liquidity, confidence to list high-value domains without cashflow pressure
@@ -103,8 +124,11 @@ Our protocol enables sellers to borrow stablecoins upfront, collateralized by do
 
 ## 🗳️ System 4: Domain Voting Contest
 
-### Overview
-The Domain Voting Contest introduces a gamified social layer to the marketplace, where community members stake tokens to vote for favorite domains while earning long-term staking rewards. This creates social discovery and engagement mechanisms.
+### Problem
+Domain marketplaces lack community engagement and social discovery mechanisms. Users need ways to discover trending domains while earning rewards for participation.
+
+### Solution: Gamified Social Layer
+Introduce a voting contest where community members stake tokens to vote for favorite domains, earning long-term staking rewards while boosting domain visibility through social discovery.
 
 ### Key Features
 
@@ -166,6 +190,12 @@ The Domain Voting Contest introduces a gamified social layer to the marketplace,
 - **Time-Weighted Rewards**: Encourages sustained participation
 - **On-Chain Transparency**: Verifiable results and fair distribution
 - **Scalable Architecture**: Supports multiple concurrent contests
+
+### Benefits
+- **Domain Owners**: Increased visibility, ranking-based promotion, higher chance of sale
+- **Voters**: Tangible rewards (NFTs, discounts, points) for participation
+- **Marketplace**: Enhanced engagement, token utility, fair ecosystem governance
+- **Community**: Social discovery, gamified participation, network effects
 
 ### Gamified Social Layer
 - Community voting for favorite domains through token staking
