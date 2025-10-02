@@ -1,12 +1,26 @@
-![Domain Auction Banner](https://raw.githubusercontent.com/0xawang/DomaAuction/main/domain-auction-banner.png)
+<div align="center">
+    <a href="https://doma-auction-frontend.vercel.app/">
+        <img alt="logo" src="https://github.com/0xawang/DomaAuction/blob/main/domain-auction-banner.png" style="width: 100%;">
+    </a>
+</div>
 
-# DomaAuction - Dual Auction Protocol
+# DomaAuction - Quad Auction Protocol
 
-A comprehensive auction ecosystem for domain NFTs featuring two specialized systems: Hybrid Batch Auctions for portfolios and Premium Single Domain Auctions with sophisticated betting mechanisms.
+A comprehensive auction ecosystem for domain NFTs featuring four specialized systems: Hybrid Batch Auctions for portfolios, Premium Single Domain Auctions with betting, Auction-Backed Lending for liquidity, and Domain Voting Contests for community engagement.
 
-## Two Specialized Auction Systems
+## Four Specialized Auction Systems
 
 ## 🎯 System 1: Hybrid Batch Auctions (HybridDutchAuction)
+
+### Overview
+Hybrid Batch Auctions enable sellers to liquidate domain portfolios efficiently while allowing buyers to participate fractionally. This system combines Dutch auction mechanics with gamification and fractional ownership.
+
+### Key Features
+- **Batch Portfolio Trading**: Auction multiple domains as a single bundle with shared pricing curve
+- **Fractional Ownership**: Buyers can bid for specific percentages of the portfolio
+- **Gamified Bidding**: Soft bids with auto-conversion and loyalty rewards
+- **Reverse Royalty Engine**: Dynamic royalties that increase over time
+- **Anti-Spam Bonds**: Refundable deposits prevent malicious bidding
 
 ### Batch Dutch Auctions
 - Auction multiple domain NFTs as a portfolio
@@ -29,19 +43,146 @@ A comprehensive auction ecosystem for domain NFTs featuring two specialized syst
 
 ## 🏆 System 2: Premium Domain Auctions with Betting (DomainAuctionBetting)
 
-### Single Domain Dutch Auctions
-- Independent auction system for premium domains
-- First bid wins and ends auction immediately
-- Timestamp-based duration
-- Configurable price thresholds for betting
+### Overview
+Premium Domain Auctions provide focused attention for high-value single domains with an integrated betting system that creates additional engagement and yield opportunities.
 
-### 4-Tier Price Betting Mechanism
-- **Commit-Reveal Betting**: Hidden bets on auction price outcomes
-- **Price Categories**: Above High (3), High~Low Range (2), Below Low (1), Uncleared (0)
-- **Seller-Defined Thresholds**: High price and low price boundaries
-- **Anti-Manipulation**: Prevents sniping with secret commitments
-- **Configurable Distribution**: Owner can adjust cuts (default: 90% winners, 5% seller, 3% buyer, 2% protocol)
-- **Penalty System**: Unrevealed bets redistributed to winners
+### Key Features
+- **Independent Single-Domain Auctions**: Dedicated Dutch auctions for premium domains
+- **First-Bid-Wins Mechanism**: Immediate auction completion on first bid
+- **4-Tier Price Betting**: Parallel wagering system on auction outcomes
+- **Commit-Reveal Protocol**: Hidden bets prevent market manipulation
+- **Configurable Price Thresholds**: Seller-defined high/low boundaries for betting categories
+
+### Betting Categories
+- **Category 3**: Final price > High Price (premium outcome)
+- **Category 2**: Low Price ≤ Final price ≤ High Price (expected range)
+- **Category 1**: Final price < Low Price (bargain outcome)
+- **Category 0**: Auction fails to clear (no sale)
+
+### Revenue Distribution
+- **90%**: Winning bettors (pro-rata by stake)
+- **5%**: Seller (liquidity premium)
+- **3%**: Winning buyer (price discovery bonus)
+- **2%**: Protocol treasury
+
+## 🏦 System 3: Auction-Backed Lending (ABL) for Domain Auctions
+
+### Overview
+Auction-Backed Lending introduces a credit layer to domain auctions, allowing sellers to access immediate liquidity while using their domain NFTs as collateral.
+
+### Problem Statement
+- Sellers often need liquidity upfront before auctions complete
+- Buyers hesitate when uncertain about seller reliability
+- Existing NFT auctions lack integrated credit markets
+
+### Solution: Auction-Backed Lending
+Our protocol enables sellers to borrow stablecoins upfront, collateralized by domain NFTs locked in auction contracts. Lenders fund up to 30-50% of estimated floor prices.
+
+### Workflow
+1. **List & Collateralize**: Seller lists domain for Dutch auction, NFT locked in smart contract, optionally requests advance loan
+2. **Funding**: Lenders/protocol provide stablecoin liquidity with encoded terms (APR, repayment deadline, liquidation trigger)
+3. **Auction Runs**: Dutch auction proceeds normally, buyers bid with confidence (NFT collateralized)
+4. **Settlement**:
+   - **Success**: Loan + interest auto-repaid from proceeds, remainder to seller
+   - **Failure**: Loan defaults, NFT ownership transfers to lenders
+
+### Benefits
+- **Sellers**: Immediate liquidity, confidence to list high-value domains without cashflow pressure
+- **Lenders**: Yield from successful auctions, discounted NFT acquisition on failures
+- **Buyers**: Enhanced security through collateralized domains
+- **Protocol**: New credit layer increases liquidity and participation
+
+### Example Scenario
+- Seller lists premium.eth with 10,000 USDC reserve
+- Requests 4,000 USDC loan (40% of reserve)
+- Lenders fund loan, NFT locked
+- Auction clears at 12,000 USDC
+- Loan repaid: 4,000 + 200 interest = 4,200 USDC
+- Seller receives: 7,800 USDC
+- **Failure case**: Lenders acquire premium.eth NFT as repayment
+
+## 🗳️ System 4: Domain Voting Contest
+
+### Overview
+The Domain Voting Contest introduces a gamified social layer to the marketplace, where community members stake tokens to vote for favorite domains while earning long-term staking rewards. This creates social discovery and engagement mechanisms.
+
+### Key Features
+
+#### 1. Contest Lifecycle
+- Only one contest active at any given time
+- Created by hoster with configurable parameters:
+  - `startTime`: Contest start timestamp
+  - `endTime`: Contest end timestamp
+  - `minStake`: Minimum token stake required (e.g., 100 tokens)
+  - `stakeMultiplier`: Maximum stake multiplier (e.g., 5 → maxStake = minStake × 5)
+
+#### 2. Voting Mechanism
+- Users can vote for up to 3 domains per contest
+- Vote weight equals staking amount (not time-cumulated)
+- Staking bounds: `minStake ≤ stake ≤ minStake × multiplier`
+- Votes locked until contest ends
+- Each wallet can participate only once per contest
+
+#### 3. Anti-Sybil & Fairness Measures
+- Token staking required to prevent spam voting
+- Staking caps prevent whale dominance
+- One participation per wallet ensures fair distribution
+- On-chain verification prevents manipulation
+
+#### 4. Voter Rewards System
+- **Staking Points Formula**: `StakingPoints = StakeAmount × TimeStaked`
+- Encourages early participation and long-term engagement
+- **Reward Types**:
+  - NFT badges for early voters
+  - Fee discounts in future auctions/sales
+  - Priority whitelists for next contests
+  - Protocol governance rights
+
+#### 5. Contest Ranking & Transparency
+- Domain score = sum of all vote stakes
+- Real-time ranking updates
+- Public and verifiable on-chain results
+- Transparent reward distribution
+
+### Example Flow
+1. **Contest Creation**: Hoster launches 10-day contest (minStake=100, multiplier=5)
+2. **Voting Phase**:
+   - Alice stakes 300 tokens → votes for domains A, B, C
+   - Bob stakes 200 tokens → votes for domains A, B
+   - Carol stakes 500 tokens → votes for domain C
+3. **Contest Resolution**:
+   - Domain A: 500 votes, Domain B: 500 votes, Domain C: 800 votes
+   - Staking points: Alice=3,000, Bob=2,000, Carol=5,000
+4. **Reward Distribution**: Users redeem points in next auction round
+
+### Benefits
+- **Domain Owners**: Increased visibility, ranking-based promotion, higher sale probability
+- **Voters**: Tangible rewards (NFTs, discounts, governance rights)
+- **Marketplace**: Enhanced engagement, token utility, fair ecosystem governance
+- **Community**: Social discovery, gamified participation, network effects
+
+### Technical Implementation
+- **Staking Integration**: Leverages existing token economics
+- **Time-Weighted Rewards**: Encourages sustained participation
+- **On-Chain Transparency**: Verifiable results and fair distribution
+- **Scalable Architecture**: Supports multiple concurrent contests
+
+### Gamified Social Layer
+- Community voting for favorite domains through token staking
+- Earn staking rewards while boosting domain visibility
+- Anti-Sybil measures ensure fair participation
+
+### Contest Features
+- **Single Active Contest**: Only one contest runs at a time
+- **Staking-Based Voting**: Vote weight equals staked amount
+- **Bounded Stakes**: minStake ≤ stake ≤ minStake × multiplier
+- **Multiple Votes**: Up to 3 domains per participant
+- **Time-Cumulated Rewards**: StakingPoints = StakeAmount × TimeStaked
+
+### Voting Mechanism
+- **Domain Ranking**: Score = sum of all vote stakes
+- **Locked Votes**: Stakes locked until contest ends
+- **Fair Distribution**: Rewards for fee discounts and priority access
 
 ## Contract Architecture
 
@@ -53,6 +194,12 @@ A comprehensive auction ecosystem for domain NFTs featuring two specialized syst
 
 **System 2 - Premium Domain + Betting:**
 - `DomainAuctionBetting.sol` - Independent single-domain auctions with 4-tier betting
+
+**System 3 - Auction-Backed Lending:**
+- `AuctionBackedLending.sol` - Lending protocol integrated with batch auctions
+
+**System 4 - Domain Voting Contest:**
+- `VotingContest.sol` - Contest management, voting, staking, and reward distribution
 
 **Shared:**
 - `IOwnershipToken.sol` - Interface for Doma domain NFTs
@@ -100,6 +247,33 @@ function settleBetting(uint256 auctionId) external
 
 // Owner functions
 function setCuts(uint256 _sellerCut, uint256 _buyerCut, uint256 _protocolCut, uint256 _winnerCut) external onlyOwner
+```
+
+#### System 3: Auction-Backed Lending Functions
+```solidity
+function requestLoan(
+    uint256 auctionId,
+    uint256 amount,
+    uint256 interestBps,
+    uint256 durationDays
+) external returns (uint256)
+
+function fundLoan(uint256 loanId, uint256 amount) external
+function repayLoan(uint256 loanId) external
+function checkAndLiquidate(uint256 loanId) external
+```
+
+#### System 4: Domain Voting Contest Functions
+```solidity
+function listDomain(uint256 domainId) external
+function createContest(uint256 startTime, uint256 endTime, uint256 minStake, uint256 multiplier) external
+function vote(uint256[] calldata domainIds, uint256 stakeAmount) external
+function endContest() external
+function unlistDomain(uint256 contestId, uint256 domainId) external
+function getStakingPoints(uint256 contestId, address user) external view returns (uint256)
+function unstake(uint256 contestId) external
+function getDomainVotes(uint256 contestId, uint256 domainId) external view returns (uint256)
+function getAllDomainVotes(uint256 contestId) external view returns (uint256[] memory, uint256[] memory)
 ```
 
 ## Examples
@@ -188,6 +362,107 @@ settleBetting(auctionId); // Category 2 bettors win 90% of pool
 - **Category 1**: Final price < Low Price (below 60 ETH)
 - **Category 0**: Auction fails to clear (no sale)
 
+### Example 3: Auction-Backed Lending
+
+**Setup:**
+- Seller lists premium domain with reserve price 10,000 USDC
+- Seller requests 4,000 USDC loan (40% of reserve) at 5% APR for 7 days
+
+```solidity
+// Request loan against auction
+uint256 loanId = requestLoan(auctionId, 4000e18, 500, 7); // 4000 USDC, 5% APR, 7 days
+
+// Lenders fund the loan
+fundLoan(loanId, 2000e18); // Lender A funds 2000 USDC
+fundLoan(loanId, 2000e18); // Lender B funds 2000 USDC
+
+// Loan disbursed to seller automatically when fully funded
+
+// If auction clears at 12,000 USDC
+repayLoan(loanId); // Seller repays 4,200 USDC (principal + 5% interest)
+
+// If auction fails
+checkAndLiquidate(loanId); // NFT transferred to lenders
+```
+
+### Example 4: Domain Voting Contest
+
+**Setup:**
+- Contest: 10 days, minStake = 100 tokens, multiplier = 5
+- Domains: A (ID 0), B (ID 1), C (ID 2) listed for voting
+
+```solidity
+// Domain owners list their domains
+listDomain(0); // Owner of domain A lists it
+listDomain(1); // Owner of domain B lists it
+listDomain(2); // Owner of domain C lists it
+
+// Create contest
+createContest(block.timestamp, block.timestamp + 10 days, 100e18, 5);
+
+// Users vote (staking happens automatically)
+vote([0, 1, 2], 300e18); // Alice votes for A, B, C with 300 stake
+vote([0, 1], 200e18); // Bob votes for A, B with 200 stake
+vote([2], 500e18); // Carol votes for C with 500 stake
+
+// After 10 days, end contest
+endContest();
+
+// Rankings: A=500, B=500, C=800
+// Staking points: Alice=300*10=3000, Bob=200*10=2000, Carol=500*10=5000
+// Domains returned to owners
+
+// Users can unstake after contest
+unstake(); // Return staked tokens
+```
+
+### Example 4: Domain Voting Contest
+
+**Setup:**
+- Contest: 10 days duration, minStake = 100 tokens, multiplier = 5
+- Domains: A (ID 0), B (ID 1), C (ID 2) listed for voting
+- Reward pool: 10,000 tokens for distribution
+
+```solidity
+// Domain owners list their domains
+listDomain(0); // Domain A owner lists domain
+listDomain(1); // Domain B owner lists domain
+listDomain(2); // Domain C owner lists domain
+
+// Create contest
+createContest(
+    block.timestamp,                    // startTime
+    block.timestamp + 10 days,          // endTime
+    100e18,                            // minStake (100 tokens)
+    5                                   // multiplier (max stake = 500 tokens)
+);
+
+// Users participate in voting
+vote([0, 1, 2], 300e18); // Alice votes for A, B, C with 300 stake
+vote([0, 1], 200e18);    // Bob votes for A, B with 200 stake
+vote([2], 500e18);       // Carol votes for C with 500 stake
+
+// Check rankings during contest
+(uint256[] memory domainIds, uint256[] memory votes) = getAllDomainVotes(contestId);
+// Returns: domainIds=[0,1,2], votes=[500,500,800]
+
+// After contest ends
+endContest(); // Final rankings: A=500, B=500, C=800
+
+// Check staking points
+uint256 alicePoints = getStakingPoints(contestId, aliceAddress); // 300 * 10 days = 3,000
+uint256 bobPoints = getStakingPoints(contestId, bobAddress);     // 200 * 10 days = 2,000
+uint256 carolPoints = getStakingPoints(contestId, carolAddress); // 500 * 10 days = 5,000
+
+// Users unstake and claim rewards
+unstake(contestId); // Return staked tokens and claim rewards
+```
+
+**Contest Results:**
+- **Domain Rankings**: C (800 votes) > A (500 votes) = B (500 votes)
+- **Staking Rewards**: Carol earns highest points, gets priority access to next contest
+- **Community Benefits**: Increased domain visibility and marketplace engagement
+
 ## Deployment
 
 ### Prerequisites
@@ -241,11 +516,23 @@ event BetRevealed(uint256 indexed auctionId, address indexed bettor, uint8 choic
 event BettingSettled(uint256 indexed auctionId, uint8 auctionResult, uint256 totalPool);
 ```
 
-## Security Features
+### System 3: Auction-Backed Lending Events
+```solidity
+event LoanRequested(uint256 indexed loanId, uint256 indexed auctionId, address borrower, uint256 amount, uint256 interestBps);
+event LoanFunded(uint256 indexed loanId, address lender, uint256 amount);
+event LoanRepaid(uint256 indexed loanId, uint256 totalRepayment);
+event LoanLiquidated(uint256 indexed loanId, address liquidator);
+```
 
-- **ReentrancyGuard**: Prevents reentrancy attacks
-- **IERC721Receiver**: Safe NFT handling
-- **Bond System**: Spam prevention
-- **Reserve Price**: Seller protection
-- **Overflow Protection**: SafeMath patterns
+### System 4: Domain Voting Contest Events
+```solidity
+event ContestCreated(uint256 indexed contestId, uint256 startTime, uint256 endTime, uint256 minStake, uint256 multiplier);
+event DomainListed(uint256 indexed domainId, address indexed owner);
+event Voted(address indexed user, uint256[] domainIds, uint256 stakeAmount);
+event ContestEnded(uint256 indexed contestId, uint256[] rankedDomains, uint256[] scores);
+event Unstaked(address indexed user, uint256 amount);
+```
 
+## License
+
+MIT License
