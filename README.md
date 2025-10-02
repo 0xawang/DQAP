@@ -14,7 +14,7 @@ Smart Contracts Repo: [https://github.com/0xawang/DomaAuction](https://github.co
 
 Frontend Repo: [https://github.com/0xawang/doma-auction-frontend](https://github.com/0xawang/doma-auction-frontend)
 
-Documentation: [Protocol Documentation PDF](https://github.com/0xawang/DQAP/blob/main/protocol-documentation.pdf.pdf)
+Documentation: [Protocol Documentation PDF](https://github.com/0xawang/DQAP/blob/main/DQAP.pdf)
 
 Website: [https://doma-auction-frontend.vercel.app/](https://doma-auction-frontend.vercel.app/)
 
