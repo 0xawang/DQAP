@@ -8,6 +8,16 @@
 
 A comprehensive auction ecosystem for domain NFTs featuring four specialized systems: Hybrid Batch Auctions for portfolios, Premium Single Domain Auctions with betting, Auction-Backed Lending for liquidity, and Domain Voting Contests for community engagement.
 
+## Resources
+
+Smart Contracts Repo: [https://github.com/0xawang/DomaAuction](https://github.com/0xawang/DomaAuction)
+
+Frontend Repo: [https://github.com/0xawang/doma-auction-frontend](https://github.com/0xawang/doma-auction-frontend)
+
+Documentation: [Protocol Documentation PDF](https://github.com/0xawang/DQAP/blob/main/protocol-documentation.pdf.pdf)
+
+Website: [https://doma-auction-frontend.vercel.app/](https://doma-auction-frontend.vercel.app/)
+
 ## Four Specialized Auction Systems
 
 ## 🎯 System 1: Hybrid Batch Auctions (HybridDutchAuction)
